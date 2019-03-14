@@ -54,7 +54,7 @@ try:
 except ImportError:
     pass
 
-config = toDict(configs)
+configs = toDict(configs)
 
 
 
