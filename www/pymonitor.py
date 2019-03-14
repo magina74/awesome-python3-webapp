@@ -5,6 +5,7 @@ import os, sys, time, subprocess
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+
 def log(s):
     print('[Monitor] %s' % s)
 
