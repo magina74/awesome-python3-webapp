@@ -16,6 +16,7 @@ from coroweb import add_routes, add_static
 
 from handlers import cookie2user, COOKIE_NAME
 
+
 def init_jinja2(app, **kw):
     logging.info('init jinja2...')
     options = dict(
@@ -37,12 +38,14 @@ def init_jinja2(app, **kw):
             env.filters[name] = f
     app['__templating__'] = env
 
+
 async def logger_factory(app, handler):
     async def logger(request):
         logging.info('Request: %s %s' % (request.method, request.path))
         # await asyncio.sleep(0.3)
         return (await handler(request))
     return logger
+
 
 async def auth_factory(app, handler):
     async def auth(request):
@@ -59,6 +62,7 @@ async def auth_factory(app, handler):
         return (await handler(request))
     return auth
 
+
 async def data_factory(app, handler):
     async def parse_data(request):
         if request.method == 'POST':
@@ -70,6 +74,7 @@ async def data_factory(app, handler):
                 logging.info('request form: %s' % str(request.__data__))
         return (await handler(request))
     return parse_data
+
 
 async def response_factory(app, handler):
     async def response(request):
@@ -110,7 +115,8 @@ async def response_factory(app, handler):
         return resp
     return response
 
-def datetiem_filter(t):
+
+def datetime_filter(t):
     delta = int(time.time() - t)
     if delta < 60:
         return u'1分钟前'
@@ -122,6 +128,7 @@ def datetiem_filter(t):
         return u'%s天前' % (delta // 86400)
     dt = datetime.frometimestamp(t)
     return u'%s年%s月%s日' % (dt.year, dt.month, dt.day)
+
 
 async def init(loop):
     await orm.create_pool(loop=loop, **configs.db)
