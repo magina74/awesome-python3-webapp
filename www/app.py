@@ -4,7 +4,7 @@
 async web application
 """
 
-import logging; logging.basicConfig(lever=logging.INFO)
+import logging; logging.basicConfig(level=logging.INFO)
 
 import asyncio, os, json, time
 from  jinja2 import Environment, FileSystemLoader
