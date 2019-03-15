@@ -205,7 +205,7 @@ def api_create_comment(id, request, *, content):
     if not content or not content.strip():
         raise APIValueError('content')
     blog = await Blog.find(id)
-    if blog id None:
+    if blog_id None:
         raise APIResourceNotFoundError('Blog')
     comment = Comment(blog_id=blog.id, user_id=user.id, user_name=user.name, user_image=user.image, content=content.strip())
     await comment.save()
