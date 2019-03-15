@@ -21,7 +21,7 @@ _COOKIE_KEY = configs.session.secret
 
 def check_admin(request):
     if request.__user__ is None or not request.__user__.admin:
-        reaise APIPermissionError()
+        raise APIPermissionError()
 
 def get_page_index(page_str):
     p = 1
